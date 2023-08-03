@@ -1,0 +1,29 @@
+use("db_limit_mongo");
+db.createCollection("usario",{
+    capped:true,
+    size:690,
+    max:5
+});
+
+use("db_limit_mongo");
+db.usuario.insertMany([
+    {
+        "nombre":"Pepito",
+        "edad":25
+    },
+        {
+        "nombre":"Pepita",
+        "edad":25
+    },
+        {
+        "nombre":"Ramiro",
+        "edad":20
+    },
+        {
+        "nombre":"Ramira",
+        "edad":20
+    },    {
+        "nombre":"Alejo",
+        "edad":25
+    }
+])
