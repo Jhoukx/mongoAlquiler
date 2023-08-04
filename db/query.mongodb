@@ -592,6 +592,8 @@ db.Contrato.find({ ID: 3 }, { _id: 0, })
 //? 7.Listar los empleados con el cargo de "Vendedor"
 use("db_campus_alquiler");
 db.Empleado.find({ Cargo:"Vendedor"},{_id:0})
-
+//? 8.Mostrar la cantidad total de automóviles disponibles en cada sucursal.
+use("db_campus_alquiler");
+db.Sucursal.find({},{_id:0});
 
 
