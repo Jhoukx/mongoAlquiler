@@ -106,31 +106,46 @@ db.Sucursal.insertMany([
         ID: 1,
         Nombre: 'Sucursal A',
         Direccion: 'Calle Principal 123',
-        Telefono: '1111111111'
+        Telefono: '1111111111',
+        AutomovilesDisponibles: [
+            { ID_Automovil: 1, Cantidad_Disponible: 3 }
+        ]
     },
     {
         ID: 2,
         Nombre: 'Sucursal B',
         Direccion: 'Avenida Central 456',
-        Telefono: '2222222222'
+        Telefono: '2222222222',
+        AutomovilesDisponibles: [
+            { ID_Automovil: 2, Cantidad_Disponible: 5 }
+        ]
     },
     {
         ID: 3,
         Nombre: 'Sucursal C',
         Direccion: 'Plaza Principal 789',
-        Telefono: '3333333333'
+        Telefono: '3333333333',
+        AutomovilesDisponibles: [
+            { ID_Automovil: 3, Cantidad_Disponible: 2 }
+        ]
     },
     {
         ID: 4,
         Nombre: 'Sucursal D',
         Direccion: 'Ruta Secundaria 101',
-        Telefono: '4444444444'
+        Telefono: '4444444444',
+        AutomovilesDisponibles: [
+            { ID_Automovil: 4, Cantidad_Disponible: 4 }
+        ]
     },
     {
         ID: 5,
         Nombre: 'Sucursal E',
         Direccion: 'Carretera Principal 987',
-        Telefono: '5555555555'
+        Telefono: '5555555555',
+        AutomovilesDisponibles: [
+            { ID_Automovil: 5, Cantidad_Disponible: 1 }
+        ]
     }
 ]);
 
@@ -338,12 +353,162 @@ db.Registro.insertMany([
     }
 ]);
 
+db.createCollection('Empleado');
+db.Empleado.insertMany([
+    {
+        ID: 1,
+        Nombre: 'Ana',
+        Apellido: 'Gomez',
+        DNI: '123456789',
+        Direccion: 'Calle 111',
+        Telefono: '1111111111',
+        Cargo: 'Gerente'
+    },
+    {
+        ID: 2,
+        Nombre: 'Luis',
+        Apellido: 'Rodriguez',
+        DNI: '987654321',
+        Direccion: 'Avenida 222',
+        Telefono: '2222222222',
+        Cargo: 'Asistente'
+    },
+    {
+        ID: 3,
+        Nombre: 'Elena',
+        Apellido: 'Fernandez',
+        DNI: '456789012',
+        Direccion: 'Plaza 333',
+        Telefono: '3333333333',
+        Cargo: 'Vendedor'
+    },
+    {
+        ID: 4,
+        Nombre: 'Mario',
+        Apellido: 'Torres',
+        DNI: '210987654',
+        Direccion: 'Ruta 444',
+        Telefono: '4444444444',
+        Cargo: 'Recepcionista'
+    },
+    {
+        ID: 5,
+        Nombre: 'Carlos',
+        Apellido: 'Hernandez',
+        DNI: '543210987',
+        Direccion: 'Carretera 555',
+        Telefono: '5555555555',
+        Cargo: 'Chofer'
+    }
+]);
+
+//Registro(Union de ambos registros)
+
+db.createCollection('Registro');
+
+db.Registro.insertMany([
+    {
+        ID: 1,
+        ID_Contrato: 1,
+        ID_Empleado: 3,
+        Fecha_Entrega: ISODate('2023-07-05'),
+        Combustible_Entregado: 40.00,
+        Kilometraje_Entregado: 2000,
+        Tipo_Registro: 'Entrega'
+    },
+    {
+        ID: 2,
+        ID_Contrato: 2,
+        ID_Empleado: 4,
+        Fecha_Entrega: ISODate('2023-07-07'),
+        Combustible_Entregado: 30.00,
+        Kilometraje_Entregado: 1800,
+        Tipo_Registro: 'Entrega'
+    },
+    {
+        ID: 3,
+        ID_Contrato: 3,
+        ID_Empleado: 1,
+        Fecha_Entrega: ISODate('2023-07-06'),
+        Combustible_Entregado: 45.00,
+        Kilometraje_Entregado: 2200,
+        Tipo_Registro: 'Entrega'
+    },
+    {
+        ID: 4,
+        ID_Contrato: 4,
+        ID_Empleado: 5,
+        Fecha_Entrega: ISODate('2023-07-08'),
+        Combustible_Entregado: 50.00,
+        Kilometraje_Entregado: 2400,
+        Tipo_Registro: 'Entrega'
+    },
+    {
+        ID: 5,
+        ID_Contrato: 5,
+        ID_Empleado: 2,
+        Fecha_Entrega: ISODate('2023-07-09'),
+        Combustible_Entregado: 35.00,
+        Kilometraje_Entregado: 1900,
+        Tipo_Registro: 'Entrega'
+    },
+    {
+        ID: 6,
+        ID_Contrato: 1,
+        ID_Empleado: 3,
+        Fecha_Devolucion: ISODate('2023-07-10'),
+        Combustible_Devuelto: 10.00,
+        Kilometraje_Devuelto: 2500,
+        Monto_Adicional: 20.00,
+        Tipo_Registro: 'Devolucion'
+    },
+    {
+        ID: 7,
+        ID_Contrato: 2,
+        ID_Empleado: 4,
+        Fecha_Devolucion: ISODate('2023-07-12'),
+        Combustible_Devuelto: 15.00,
+        Kilometraje_Devuelto: 2100,
+        Monto_Adicional: 15.00,
+        Tipo_Registro: 'Devolucion'
+    },
+    {
+        ID: 8,
+        ID_Contrato: 3,
+        ID_Empleado: 1,
+        Fecha_Devolucion: ISODate('2023-07-11'),
+        Combustible_Devuelto: 20.00,
+        Kilometraje_Devuelto: 2300,
+        Monto_Adicional: 25.00,
+        Tipo_Registro: 'Devolucion'
+    },
+    {
+        ID: 9,
+        ID_Contrato: 4,
+        ID_Empleado: 5,
+        Fecha_Devolucion: ISODate('2023-07-13'),
+        Combustible_Devuelto: 25.00,
+        Kilometraje_Devuelto: 2600,
+        Monto_Adicional: 30.00, Tipo_Registro: 'Devolucion'
+    },
+    {
+        ID: 10,
+        ID_Contrato: 5,
+        ID_Empleado: 2,
+        Fecha_Devolucion: ISODate('2023-07-14'),
+        Combustible_Devuelto: 18.00,
+        Kilometraje_Devuelto: 2000,
+        Monto_Adicional: 12.00,
+        Tipo_Registro: 'Devolucion'
+    }
+]);
+
 //*Consultas Alquiler_de_autos
 
 //? 2.Mostrar todos los clientes registrados en la base de datos
 
 use("db_campus_alquiler");
-db.Cliente.find();
+db.Cliente.find({},{_id:0});
 
 //? 3.Obtener todos los automóviles disponibles para alquiler
 use("db_campus_alquiler");
@@ -364,60 +529,69 @@ use("db_campus_alquiler");
 db.getCollection("Contrato").aggregate([
     {
         $match: {
-          Estado: "Activo"
+            Estado: "Activo"
         }
     },
     {
         $lookup: {
-          from: "Cliente",
-          localField: "ID_Cliente",
-          foreignField: "ID",
-          as: "fk"
+            from: "Cliente",
+            localField: "ID_Cliente",
+            foreignField: "ID",
+            as: "Cliente"
         }
     },
     {
         $project: {
-          "fk._id":0,  
-          Fecha_Fin:0,
-          Fecha_Inicio:0,
-          _id:0
+            "Cliente._id": 0,
+            ID_Cliente:0,
+            Fecha_Fin: 0,
+            Fecha_Inicio: 0,
+            _id: 0
         }
     }
-]); 
+]);
 //? 5.Mostrar todas las reservas pendientes con los datos del cliente y el automóvil reservado
 use("db_campus_alquiler");
 db.getCollection("Contrato").aggregate([
     {
         $match: {
-          Estado: "Pendiente"
+            Estado: "Pendiente"
         }
     },
     {
         $lookup: {
-          from: "Cliente",
-          localField: "ID_Cliente",
-          foreignField: "ID",
-          as: "Cliente"
+            from: "Cliente",
+            localField: "ID_Cliente",
+            foreignField: "ID",
+            as: "Cliente"
         }
     },
     {
         $lookup: {
-          from: "Automovil",
-          localField: "ID_Automovil",
-          foreignField: "ID",
-          as: "Automovil"
+            from: "Automovil",
+            localField: "ID_Automovil",
+            foreignField: "ID",
+            as: "Automovil"
         }
     },
     {
         $project: {
-            "Cliente._id":0,
-            "Automovil._id":0,
-          _id:0,
-          Fecha_Inicio:0,
-          Fecha_Fin:0
+            "Cliente._id": 0,
+            "Automovil._id": 0,
+            ID_Cliente:0,
+            ID_Automovil:0,
+            _id: 0,
+            Fecha_Inicio: 0,
+            Fecha_Fin: 0
         }
     }
 ]);
 //? 6.Obtener los detalles del alquiler con el ID_Alquiler específico
 use("db_campus_alquiler");
-db.Contrato.find({ID:3},{_id:0,})
+db.Contrato.find({ ID: 3 }, { _id: 0, })
+//? 7.Listar los empleados con el cargo de "Vendedor"
+use("db_campus_alquiler");
+db.Empleado.find({ Cargo:"Vendedor"},{_id:0})
+
+
+
