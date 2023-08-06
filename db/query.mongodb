@@ -597,19 +597,18 @@ use("db_campus_alquiler");
 db.Sucursal.find({},{_id:0});
 //? 9.Obtener el costo total de un alquiler específico
 use("db_campus_alquiler");
-db.Contrato.find({ ID: 3 }, {
-    _id: 0,
-    ID: 0,
-    ID_Cliente: 0,
-    ID_Automovil: 0,
-    Fecha_Inicio: 0,
-    Fecha_Fin: 0,
-    Estado: 0,
-    Tipo: 0
-});
+db.Contrato.find({ ID: 3 }, { Costo_Total :1,_id:0});
 //? 10.Listar los clientes con el DNI específico.
 use("db_campus_alquiler");
 db.Cliente.find({ DNI: "87654321" });
 //? 11.Mostrar todos los automóviles con una capacidad mayor a 5 personas
 use("db_campus_alquiler");
 db.Automovil.find({ Capacidad: { $gt: 5 } });
+//? 12.Obtener los detalles del alquiler que tiene fecha de inicio en '2023-07-05'
+use("db_campus_alquiler");
+db.Contrato.find(
+    {
+        Fecha_Inicio: { $eq: new Date("2023-07-05") }
+    },{_id:0}
+);
+
