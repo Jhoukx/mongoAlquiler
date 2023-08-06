@@ -597,6 +597,17 @@ use("db_campus_alquiler");
 db.Sucursal.find({},{_id:0});
 //? 9.Obtener el costo total de un alquiler específico
 use("db_campus_alquiler");
-db.Contrato.find({}, { _id: 0, ID :0});
-
+db.Contrato.find({ ID: 3 }, {
+    _id: 0,
+    ID: 0,
+    ID_Cliente: 0,
+    ID_Automovil: 0,
+    Fecha_Inicio: 0,
+    Fecha_Fin: 0,
+    Estado: 0,
+    Tipo: 0
+});
+//? 10.Listar los clientes con el DNI específico.
+use("db_campus_alquiler");
+db.Cliente.find({ DNI: "87654321" });
 
