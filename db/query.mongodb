@@ -617,5 +617,26 @@ db.Cliente.find({ID:2},{_id:0});
 //? 14.Mostrar los empleados de "Gerente" o "Asistente"
 use("db_campus_alquiler");
 db.Empleado.find({ $or: [ { "Cargo":"Gerente" }, { "Cargo":"Asistente" } ] },{_id:0});
-
-
+//? 15.Obtener los datos de los clientes que realizaron al menos un alquiler 
+use("db_campus_alquiler");
+db.getCollection("Contrato").aggregate([
+    {
+        $match:{
+            Tipo:"Alquiler"
+        }
+    },
+    {
+        $lookup: {
+        from: "Cliente",
+        localField: "ID_Cliente",
+        foreignField: "ID",
+        as: "Cliente"
+        }
+    },
+    {
+        $project: {
+            "Cliente._id":0,
+            _id:0
+        }
+    }
+]);
