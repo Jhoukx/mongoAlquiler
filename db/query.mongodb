@@ -611,4 +611,11 @@ db.Contrato.find(
         Fecha_Inicio: { $eq: new Date("2023-07-05") }
     },{_id:0}
 );
+//? 13.Listar las reservas pendientes realizadas por un cliente específico
+use("db_campus_alquiler");
+db.Cliente.find({ID:2},{_id:0});
+//? 14.Mostrar los empleados de "Gerente" o "Asistente"
+use("db_campus_alquiler");
+db.Empleado.find({ $or: [ { "Cargo":"Gerente" }, { "Cargo":"Asistente" } ] },{_id:0});
+
 
