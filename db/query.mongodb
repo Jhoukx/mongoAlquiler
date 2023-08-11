@@ -658,4 +658,13 @@ db.getCollection("Automovil").aggregate([
         }
     }
 ]);
-
+//? 17.Mostrar la cantidad total de automóviles en cada sucursal junto con su dirección
+use("db_campus_alquiler");
+db.getCollection("Sucursal").aggregate([
+    {
+        $project: {
+            "AutomovilDeSucursal._id": 0,
+          _id:0
+        }
+    }
+]);
