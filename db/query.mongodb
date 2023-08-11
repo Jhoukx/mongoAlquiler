@@ -640,3 +640,22 @@ db.getCollection("Contrato").aggregate([
         }
     }
 ]);
+//? 16.Listar todos los automoviles por marca y modelos
+use("db_campus_alquiler");
+db.getCollection("Automovil").aggregate([
+    {
+        $lookup: {
+          from: "Contrato",
+          localField: "ID",
+            foreignField: "ID_Automovil",
+          as: "AutosRelacionados"
+        }
+    },
+    {
+        $project: {
+            "AutosRelacionados._id": 0,
+            _id: 0
+        }
+    }
+]);
+
