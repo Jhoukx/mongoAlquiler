@@ -547,25 +547,15 @@ db.Registro.insertMany([
 
 //*Consultas Alquiler_de_autos
 
-//? 2.Mostrar todos los clientes registrados en la base de datos
+//? 2.Mostrar todos los clientes registrados en la base de datos ✅
 
 use("db_campus_alquiler");
 db.Cliente.find({},{_id:0});
 
-//? 3.Obtener todos los automóviles disponibles para alquiler
+//? 3.Obtener todos los automóviles disponibles para alquiler 
 use("db_campus_alquiler");
-db.getCollection("Contrato").aggregate([
-    {
-        $match: {
-            Estado: "Disponible"
-        }
-    },
-    {
-        $project: {
-            _id: 0
-        }
-    }
-]);
+db.Contrato.find({Estado:"Disponible"}, { _id: 0 });
+
 //? 4.Listar todos los alquileres activos junto con los datos de los clientes relacionados
 use("db_campus_alquiler");
 db.getCollection("Contrato").aggregate([
