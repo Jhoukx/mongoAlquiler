@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { con } from '../db/atlas.js';
-import { limitGet } from "../limit/config.js";
+import { con } from '../config/connection/db/atlas.js';
+import { limitGet } from "../app/middleware/limit.js";
 const appContrato = Router();
 
-appContrato.get('/',limitGet() ,async (req, res) => {
+appContrato.get('/', limitGet(), async (req, res) => {
     if (!req.rateLimit) return;
     console.log(req.rateLimit);
 
