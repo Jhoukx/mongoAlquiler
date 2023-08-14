@@ -1,6 +1,51 @@
 use("db_campus_alquiler");
 db.createCollection('Cliente');
-
+db.createCollection("Cliente", {
+    capped: true,
+    size: 700,
+    max: 5,
+    validator: {
+        $jsonSchema: {
+            bsonType:'object',
+            additionalProperties: false,
+            required: ["ID", "Nombre", "Apellido", "DNI"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId'
+                },
+                Nombre: {
+                    bsonType: 'string',
+                    description: '{"status": "402", "message": "El Nombre_cliente es obligatorio y solo resive letras"}',
+                    pattern:"^[a-zA-Z ]+$"
+                },
+                Apellido: {
+                    bsonType: 'string',
+                    description: '{"status": "402", "message": "El Apellido_cliente es obligatorio y solo resive letras"}',
+                    pattern: "^[a-zA-Z ]+$"
+                },
+                DNI: {
+                    bsonType: 'int',
+                    description: '{"status": "402", "message": "El DNI_cliente es obligatorio y solo resive letras"}',
+                    pattern: "/^[0-9]+$/"
+                },
+                Direccion: {
+                    bsonType: 'int',
+                    description: '{"status": "402", "message": "El Direccion_cliente es obligatorio y solo resive letras"}',
+                    pattern:"/^[a-zA-Z0-9\s\-\#]+$/"
+                },
+                Telefono: {
+                    bsonType: 'int',
+                    description: '{ "status": "402", "message": "El Telefono_cliente es obligatorio y solo resive letras" }',
+                    pattern: "/^[0-9]+$/"
+                },
+                Email: {
+                    bsonType: 'int',
+                    description: '{ "status": "402", "message": "El Email_cliente es obligatorio y solo resive letras" }'
+                }
+            }
+        }
+    }
+})
 db.Cliente.insertMany([
     {
         ID: 1,
@@ -149,7 +194,6 @@ db.Sucursal.insertMany([
     }
 ]);
 
-// Colección: Contrato (fusion de Alquiler y Reserva)
 
 db.createCollection('Contrato');
 
@@ -252,7 +296,6 @@ db.Contrato.insertMany([
     },
 ]);
 
-//Registro(Union de ambos registros)
 
 db.createCollection('Registro');
 
@@ -402,7 +445,6 @@ db.Empleado.insertMany([
     }
 ]);
 
-//Registro(Union de ambos registros)
 
 db.createCollection('Registro');
 
