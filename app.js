@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import appCampus from './app/routes/campus.routes.js';
 import appCliente from './app/routes/cliente.routes.js';
 import appContrato from './app/routes/contrato.routes.js';
 dotenv.config();
