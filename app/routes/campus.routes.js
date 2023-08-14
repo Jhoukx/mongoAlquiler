@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { con } from '../config/connection/db/atlas.js';
-import { limitGet } from '../app/middleware/limit.js';
-import { ObjectId } from "mongodb";
+import { con } from '../../config/connection/atlas.js';
+import { limitGet } from '../middleware/limit.js';
 const appCampus = Router();
 
 appCampus.get('/', limitGet(), async (req, res) => {

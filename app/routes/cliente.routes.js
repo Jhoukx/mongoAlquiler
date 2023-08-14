@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { con } from '../config/connection/db/atlas.js';
-import { limitGet } from '../app/middleware/limit.js';
+import { con } from '../../config/connection/atlas.js';
+import { limitGet } from '../middleware/limit.js';
 
 const appCliente = Router();
 
