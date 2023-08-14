@@ -9,7 +9,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/campus', appCampus);
 app.use('/cliente', appCliente);
 app.use('/contrato', appContrato);
 const config = JSON.parse(process.env.SERVER);
