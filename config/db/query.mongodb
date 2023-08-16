@@ -577,7 +577,7 @@ db.getCollection("Contrato").aggregate([
 ]);
 db.Contrato.find({Estado:"Disponible"}, { _id: 0 });
 
-//? 4.Listar todos los alquileres activos junto con los datos de los clientes relacionados 
+//? 4.Listar todos los alquileres activos junto con los datos de los clientes relacionados ✅
 use("db_campus_alquiler");
 db.getCollection("Contrato").aggregate([
     {
