@@ -61,4 +61,45 @@ const activeAlquiler = async (req, res) => {
     ]).toArray();
     res.send(result);
 }
-export { availableAutomovil,activeAlquiler };
+
+const pendingClienteYAutomovil = async (req, res) => {
+    if (!req.rateLimit) return;
+    console.log(req.rateLimit);
+
+    let result = await contrato.aggregate([
+        {
+            $match: {
+                Estado: "Pendiente"
+            }
+        },
+        {
+            $lookup: {
+                from: "Cliente",
+                localField: "ID_Cliente",
+                foreignField: "ID",
+                as: "Cliente"
+            }
+        },
+        {
+            $lookup: {
+                from: "Automovil",
+                localField: "ID_Automovil",
+                foreignField: "ID",
+                as: "Automovil"
+            }
+        },
+        {
+            $project: {
+                "Cliente._id": 0,
+                "Automovil._id": 0,
+                ID_Cliente: 0,
+                ID_Automovil: 0,
+                _id: 0,
+                Fecha_Inicio: 0,
+                Fecha_Fin: 0
+            }
+        }
+    ]).toArray()
+    res.send(result);
+}
+export { availableAutomovil, activeAlquiler, pendingClienteYAutomovil };

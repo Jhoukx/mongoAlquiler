@@ -603,7 +603,7 @@ db.getCollection("Contrato").aggregate([
         }
     }
 ]);
-//? 5.Mostrar todas las reservas pendientes con los datos del cliente y el automóvil reservado
+//? 5.Mostrar todas las reservas pendientes con los datos del cliente y el automóvil reservado ✅
 use("db_campus_alquiler");
 db.getCollection("Contrato").aggregate([
     {
