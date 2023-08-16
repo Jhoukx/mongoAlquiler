@@ -108,8 +108,27 @@ const idAlquiler = async (req, res) => {
     if (!req.rateLimit) return;
     console.log(req.rateLimit);
     const id = Number(req.params.id)
+    let result = undefined
 
-    let result = await contrato.find({ ID: id }, { _id: 0, }).toArray();
+    if (req.query.Costo_Total === undefined) {
+        result = await contrato.find({ ID: id }, { _id: 0 }).toArray();
+    } else {
+        result = await contrato.aggregate([
+            {
+                $match: {
+                    ID: id
+                }
+            },
+            {
+                $project: {
+                    Costo_Total: 1,
+                    _id: 0
+                }
+            }
+        ]).toArray()
+    }
+
+    console.log(`result:\t${result}`);
     res.send(result);
 }
 export { availableAutomovil, activeAlquiler, pendingClienteYAutomovil, idAlquiler };
