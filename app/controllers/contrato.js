@@ -34,11 +34,12 @@ const availableAutomovil = async (req, res) => {
 const activeAlquiler = async (req, res) => {
     if (!req.rateLimit) return;
     console.log(req.rateLimit);
-
+    let valor = req.query.Estado
+    
     let result = await contrato.aggregate([
         {
             $match: {
-                Estado: "Activo"
+                Estado: valor
             }
         },
         {
@@ -102,4 +103,13 @@ const pendingClienteYAutomovil = async (req, res) => {
     ]).toArray()
     res.send(result);
 }
-export { availableAutomovil, activeAlquiler, pendingClienteYAutomovil };
+
+const idAlquiler = async (req, res) => {
+    if (!req.rateLimit) return;
+    console.log(req.rateLimit);
+    const id = Number(req.params.id)
+
+    let result = await contrato.find({ ID: id }, { _id: 0, }).toArray();
+    res.send(result);
+}
+export { availableAutomovil, activeAlquiler, pendingClienteYAutomovil, idAlquiler };
